@@ -15,15 +15,11 @@ while running:
     print "{0} connected".format(addr)
 
     while True:
-        try:
-            data = client_sock.recv(1024)
-            if not data:
-                break
-
-            print "received {0}".format(data)
-            client_sock.send(data)
-        except ConnectionResetError:
-            print "client terminated connection"
+        data = client_sock.recv(1024)
+        if not data:
             break
+
+        print "received {0}".format(data)
+        client_sock.send(data)
 
 server_sock.close()
